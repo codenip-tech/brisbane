@@ -23,4 +23,16 @@ class Organization
     public function id(): string {
         return $this->id;
     }
+
+    public function users(): array
+    {
+        return $this->users;
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+
 }

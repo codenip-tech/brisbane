@@ -1,21 +1,46 @@
-version: '3'
+version: '3.5'
 
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+  brisbane:
+    container_name: brisbane
+    build:
+      context: ./docker
+      args:
+        UID: $U_ID
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+      - ./:/appdata/www
+    ###> XDEBUG 3 ###
+    # Use your client IP here
+    # Linux: run "ip a | grep docker0"
+    # Windows (with WSL2) and Mac: host.docker.internal
+    environment:
+      XDEBUG_CLIENT_HOST: 172.17.0.1
+      XDEBUG_CLIENT_PORT: 9003
+      PHP_IDE_CONFIG: serverName=brisbane
+    ports:
+      - '1000:8000'
+      - '8080:80'
+    networks:
+      - brisbane-network
+    depends_on:
+      - brisbane-mysql
+
+  brisbane-mysql:
+    container_name: brisbane-mysql
+    image: mariadb:10.5.8
+    ports:
+      - '3336:3306'
+    environment:
+      MYSQL_DATABASE: mysql_symfony
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - brisbane-mysql-data:/var/lib/mysql
+    networks:
+      - brisbane-network
+    command: [ 'mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
+
+networks:
+  brisbane-network:
 
 volumes:
-###> doctrine/doctrine-bundle ###
-  db-data:
-###< doctrine/doctrine-bundle ###
+  brisbane-mysql-data:

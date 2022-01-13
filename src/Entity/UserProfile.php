@@ -5,7 +5,7 @@ namespace App\Entity;
 class UserProfile
 {
     private function __construct(
-        private readonly $id,
+        private readonly string $id,
         private string $firstName,
         private string $lastName,
     ) {}
