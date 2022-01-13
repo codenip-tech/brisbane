@@ -5,7 +5,7 @@ namespace App\Entity;
 class BillingProfile
 {
     private function __construct(
-        private readonly $id,
+        private readonly string $id,
         private readonly Organization $organization,
     ) {}
 
