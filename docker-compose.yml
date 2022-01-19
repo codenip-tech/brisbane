@@ -1,10 +1,25 @@
 version: '3.5'
 
 services:
-  brisbane:
-    container_name: brisbane
+  brisbane-web:
+    container_name: brisbane-web
     build:
-      context: ./docker
+      context: ./docker/nginx
+      args:
+        UID: $U_ID
+    ports:
+      - '1500:80'
+    volumes:
+      - ./public:/appdata/www/public
+    depends_on:
+      - brisbane-app
+    networks:
+      - brisbane-network
+
+  brisbane-app:
+    container_name: brisbane-app
+    build:
+      context: ./docker/php
       args:
         UID: $U_ID
     volumes:
@@ -17,9 +32,6 @@ services:
       XDEBUG_CLIENT_HOST: 172.17.0.1
       XDEBUG_CLIENT_PORT: 9003
       PHP_IDE_CONFIG: serverName=brisbane
-    ports:
-      - '1000:8000'
-      - '8080:80'
     networks:
       - brisbane-network
     depends_on:

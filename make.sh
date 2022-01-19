@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 export U_ID=$(id -u)
-DOCKER_BE=brisbane
+DOCKER_BE=brisbane-app
 COMMAND=$1
 docker network create brisbane-network > /dev/null || true
 

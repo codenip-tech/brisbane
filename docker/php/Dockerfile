@@ -17,13 +17,10 @@ RUN apt update \
     && docker-php-ext-install intl pdo zip \
     # for MySQL
     && docker-php-ext-install pdo_mysql \
-    # for Postgres
-    && apt install -y libpq-dev \
-    && docker-php-ext-install pdo_pgsql \
     # for RabbitMQ and XDEBUG
     && docker-php-ext-install bcmath sockets \
     && apt install -y librabbitmq-dev vim libssh-dev \
-    && pecl install xdebug amqp-1.11.0RC1 \
+    && pecl install xdebug amqp \
     # enable Docker extensions
     && docker-php-ext-enable --ini-name 05-opcache.ini opcache xdebug amqp
 
@@ -36,15 +33,9 @@ RUN wget https://cs.symfony.com/download/php-cs-fixer-v3.phar -O php-cs-fixer
 RUN chmod a+x php-cs-fixer
 RUN mv php-cs-fixer /usr/local/bin/php-cs-fixer
 
-## Install Symfony binary
-USER appuser
-RUN wget https://get.symfony.com/cli/installer -O - | bash
-USER root
-RUN mv /home/appuser/.symfony/bin/symfony /usr/local/bin/symfony
-
 RUN mkdir -p /appdata/www
 
 # Config XDEBUG
-COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 WORKDIR /appdata/www
