@@ -5,22 +5,18 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/users")
- */
+#[Route('/users')]
 class UserController
 {
     public function __construct(private UserRepository $userRepository)
     {
-
     }
 
-    /**
-     * @Route("/{id}", name="users_get", methods={"GET"})
-     */
+    #[Route('/{id}', name: 'users_get', methods: ['GET'])]
     public function getUser(string $id): JsonResponse
     {
         $user = $this->userRepository->find($id);
@@ -34,10 +30,8 @@ class UserController
         ]);
     }
 
-    /**
-     * @Route("/register", name="users_register", methods={"GET"})
-     */
-    public function register(): JsonResponse
+    #[Route('/register', name: 'users_register', methods: ['POST'])]
+    public function register(): Response
     {
         $user = new User('testid', 'moein@codenip.tech');
         $this->userRepository->save($user);
