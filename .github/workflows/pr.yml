@@ -10,5 +10,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Test
-        run: echo "hello world"
+      - name: Pull docker-compose
+        run: docker-compose -f docker-compose.yml pull
+      - uses: satackey/action-docker-layer-caching@v0.0.11
+        continue-on-error: true
+      - name: Prepare containers
+        run: make start && make composer-install
+      - name: Run tests
+        run: make tests

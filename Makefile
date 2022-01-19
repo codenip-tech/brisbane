@@ -1,7 +1,7 @@
 #!/bin/bash
 
 UID = $(shell id -u)
-DOCKER_BE = codenip-php81-symfony54
+DOCKER_BE = brisbane-app
 
 help: ## Show this help message
 	@echo 'usage: make [target]'
@@ -40,3 +40,7 @@ ssh-be: ## bash into the be container
 
 code-style: ## Runs php-cs to fix code styling following Symfony rules
 	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
+
+.PHONY: tests
+tests: ## Run tests
+	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} vendor/bin/simple-phpunit -c phpunit.xml.dist
