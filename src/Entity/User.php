@@ -32,13 +32,13 @@ class User
         $this->email = $email;
     }
 
-
     public static function create(string $id, string $email): static
     {
         return new static($id, $email);
     }
 
-    public function id(): string {
+    public function id(): string
+    {
         return $this->id;
     }
 

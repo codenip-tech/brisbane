@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use JetBrains\PhpStorm\Pure;
-
 class Organization
 {
     /**
@@ -14,13 +12,16 @@ class Organization
     private function __construct(
         private readonly string $id,
         private string $name,
-    ) {}
+    ) {
+    }
 
-    public static function create(string $id, string $name): static {
+    public static function create(string $id, string $name): static
+    {
         return new static($id, $name);
     }
 
-    public function id(): string {
+    public function id(): string
+    {
         return $this->id;
     }
 
@@ -33,6 +34,4 @@ class Organization
     {
         return $this->name;
     }
-
-
 }

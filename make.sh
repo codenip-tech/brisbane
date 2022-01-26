@@ -20,6 +20,12 @@ case ${COMMAND} in
     docker network create brisbane-network 2> /dev/null || true
     docker-compose build
     ;;
+  code-style)
+    docker exec --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
+    ;;
+  code-style-check)
+    docker exec --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony --dry-run
+    ;;
   *)
     echo "Command ${COMMAND} not implemented"
     ;;
