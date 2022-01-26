@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: go to app folder
+        run: cd app
       - name: Pull docker-compose
         run: docker-compose -f docker-compose.yml pull
       - uses: satackey/action-docker-layer-caching@v0.0.11
