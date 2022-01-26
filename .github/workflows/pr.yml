@@ -19,6 +19,6 @@ jobs:
       - name: Prepare containers
         run: make start && make composer-install
       - name: Run coding style check
-        run: make code-style
+        run: make code-style-check
       - name: Run tests
         run: make tests
