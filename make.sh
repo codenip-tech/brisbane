@@ -5,16 +5,22 @@ DOCKER_BE=brisbane-app
 COMMAND=$1
 docker network create brisbane-network > /dev/null || true
 
-if [[ "${COMMAND}" == "ssh-be" ]]; then
+case ${COMMAND} in
+  ssh-be)
     docker exec -it --user "${U_ID}" "${DOCKER_BE}" bash
-elif [[ "${COMMAND}" == "start" ]]; then
-  docker network create brisbane-network 2> /dev/null || true
-  docker-compose up -d
-elif [[ "${COMMAND}" == "stop" ]]; then
-  docker-compose stop
-elif [[ "${COMMAND}" == "build" ]]; then
-  docker network create brisbane-network 2> /dev/null || true
-  docker-compose build
-else
-  echo "Command ${COMMAND} not implemented"
-fi
+    ;;
+  start)
+    docker network create brisbane-network 2> /dev/null || true
+    docker-compose up -d
+    ;;
+  stop)
+    docker-compose stop
+    ;;
+  build)
+    docker network create brisbane-network 2> /dev/null || true
+    docker-compose build
+    ;;
+  *)
+    echo "Command ${COMMAND} not implemented"
+    ;;
+esac
