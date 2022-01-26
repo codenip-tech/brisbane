@@ -8,7 +8,8 @@ class UserProfile
         private readonly string $id,
         private string $firstName,
         private string $lastName,
-    ) {}
+    ) {
+    }
 
     public static function createEmpty(User $user)
     {

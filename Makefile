@@ -39,7 +39,10 @@ ssh-be: ## bash into the be container
 	./make.sh ssh-be
 
 code-style: ## Runs php-cs to fix code styling following Symfony rules
-	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
+	./make.sh code-style
+
+code-style-check: ## Runs php-cs with dry run option to check if everything is ok
+	./make.sh code-style-check
 
 .PHONY: tests
 tests: ## Run tests
