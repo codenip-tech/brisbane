@@ -35,6 +35,7 @@ class UserController
     {
         $user = new User('testid', 'moein@codenip.tech');
         $this->userRepository->save($user);
+
         return new JsonResponse(['success' => true]);
     }
 }
