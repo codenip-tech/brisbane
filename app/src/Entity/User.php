@@ -8,11 +8,11 @@ use Doctrine\ORM\Mapping as ORM;
 class User
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: "NONE")]
-    #[ORM\Column(type: "string")]
+    #[ORM\GeneratedValue(strategy: 'NONE')]
+    #[ORM\Column(type: 'string')]
     private string $id;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: 'string')]
     private string $email;
 
     /**

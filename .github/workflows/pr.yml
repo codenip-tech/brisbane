@@ -4,9 +4,12 @@ on:
       - main
 
 jobs:
-  checks:
+  app_checks:
     name: Checks
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
