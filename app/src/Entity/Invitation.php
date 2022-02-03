@@ -21,4 +21,19 @@ class Invitation
     {
         return $this->id;
     }
+
+    public function token(): string
+    {
+        return $this->token;
+    }
+
+    public function organization(): Organization
+    {
+        return $this->organization;
+    }
+
+    public function email(): string
+    {
+        return $this->email;
+    }
 }

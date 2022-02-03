@@ -13,10 +13,21 @@ class UserProfile
 
     public static function createEmpty(User $user)
     {
-        return new static(
-            $user->id(),
-            '',
-            ''
-        );
+        return new static($user->id(), '', '');
+    }
+
+    public function id(): string
+    {
+        return $this->id;
+    }
+
+    public function firstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function lastName(): string
+    {
+        return $this->lastName;
     }
 }

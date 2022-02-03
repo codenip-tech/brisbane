@@ -19,4 +19,9 @@ class BillingProfile
     {
         return $this->id;
     }
+
+    public function organization(): Organization
+    {
+        return $this->organization;
+    }
 }
