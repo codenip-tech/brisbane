@@ -1,6 +1,6 @@
 #!/bin/bash
-U_IDX=$(shell id -u)
-UID=$(($U_IDX%1000)) #To prevent large numbers and avoid conflicts with Docker
+UID_X=$(shell id -u)
+UID=$(($UID_X%1000)) #To prevent large numbers and avoid conflicts with Docker
 DOCKER_BE = brisbane-app
 
 help: ## Show this help message

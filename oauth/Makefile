@@ -1,6 +1,7 @@
 #!/bin/bash
 
-UID = $(shell id -u)
+UID_X = $(shell id -u)
+UID := $(shell echo ${UID_X}%1000 | bc) #To prevent large numbers and avoid conflicts with Docker
 DOCKER_BE = brisbane-oauth-app
 
 help: ## Show this help message
