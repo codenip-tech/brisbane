@@ -39,7 +39,7 @@ services:
 
   brisbane-oauth-mysql:
     container_name: brisbane-oauth-mysql
-    image: mysql:8.0.26
+    image: mariadb:10.7.1
     ports:
       - '3366:3306'
     environment:
