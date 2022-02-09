@@ -44,3 +44,6 @@ ssh-be: ## bash into the be container
 
 generate-private-key:
 	openssl genrsa -out private.key 2048
+
+code-style: ## Runs php-cs to fix code styling following Symfony rules
+	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
