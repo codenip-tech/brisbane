@@ -4,9 +4,7 @@ namespace App\Entity;
 
 class Organization
 {
-    /**
-     * @var User[]
-     */
+    /** @var User[] */
     private array $users = [];
 
     private function __construct(
@@ -25,13 +23,13 @@ class Organization
         return $this->id;
     }
 
-    public function users(): array
-    {
-        return $this->users;
-    }
-
     public function name(): string
     {
         return $this->name;
+    }
+
+    public function users(): array
+    {
+        return $this->users;
     }
 }

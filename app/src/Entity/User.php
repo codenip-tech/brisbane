@@ -15,9 +15,7 @@ class User
     #[ORM\Column(type: 'string')]
     private string $email;
 
-    /**
-     * @var Organization[]
-     */
+    /** @var Organization[] */
     private array $organizations = [];
 
     public function __construct(string $id, string $email)
@@ -39,5 +37,10 @@ class User
     public function email(): string
     {
         return $this->email;
+    }
+
+    public function organizations(): array
+    {
+        return $this->organizations;
     }
 }
