@@ -8,6 +8,7 @@ docker-compose.yml
 /public/bundles/
 /var/
 /vendor/
+.php-cs-fixer.cache
 ###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-bundle ###

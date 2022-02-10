@@ -8,6 +8,7 @@ docker-compose.yml
 /public/bundles/
 /var/
 /vendor/
+.php-cs-fixer.cache
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
@@ -16,8 +17,9 @@ docker-compose.yml
 ###< symfony/phpunit-bridge ###
 
 ###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
+# duplicated!
+# /phpunit.xml
+# .phpunit.result.cache
 ###< phpunit/phpunit ###
 
 *.cache
