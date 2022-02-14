@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-#[ORM\UniqueConstraint(name: "unique_user_email", columns: ["email"])]
+#[ORM\UniqueConstraint(name: "U_user_email", columns: ["email"])]
 class User
 {
     #[ORM\Id]
@@ -22,10 +22,10 @@ class User
     private $lastName;
 
     #[ORM\Column(type: 'string', length: 100)]
-    private $email;
+    private string $email;
 
     #[ORM\Column(type: 'string', length: 100)]
-    private $password;
+    private ?string $password;
 
     public function __construct(
         string $id,
@@ -37,7 +37,7 @@ class User
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
-        $this->email = $email;
+        $this->setEmail($email);
         $this->password = null;
     }
 
