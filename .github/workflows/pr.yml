@@ -5,7 +5,7 @@ on:
 
 jobs:
   app_checks:
-    name: Checks
+    name: app checks
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -25,3 +25,21 @@ jobs:
         run: make code-style-check
       - name: Run tests
         run: make tests
+
+  oauth_checks:
+    name: oauth checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: oauth
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Pull docker-compose
+        run: cp -n docker-compose.yml.dist docker-compose.yml && docker-compose -f docker-compose.yml pull
+      - uses: satackey/action-docker-layer-caching@v0.0.11
+        continue-on-error: true
+      - name: Prepare containers
+        run: make start && make composer-install
+      - name: Run coding style check
+        run: make code-style-check

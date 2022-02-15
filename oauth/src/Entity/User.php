@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-#[ORM\UniqueConstraint(name: "U_user_email", columns: ["email"])]
+#[ORM\UniqueConstraint(name: 'U_user_email', columns: ['email'])]
 class User
 {
     #[ORM\Id]
@@ -32,8 +32,7 @@ class User
         string $firstName,
         string $lastName,
         string $email,
-    )
-    {
+    ) {
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -92,6 +91,4 @@ class User
     {
         $this->password = $password;
     }
-
-
 }

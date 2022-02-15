@@ -39,6 +39,11 @@ RUN wget https://get.symfony.com/cli/installer -O - | bash
 USER root
 RUN mv /home/appuser/.symfony/bin/symfony /usr/local/bin/symfony
 
+# Install PHP-CS-FIXER
+RUN wget https://cs.symfony.com/download/php-cs-fixer-v3.phar -O php-cs-fixer
+RUN chmod a+x php-cs-fixer
+RUN mv php-cs-fixer /usr/local/bin/php-cs-fixer
+
 RUN mkdir -p /appdata/www
 
 # Config XDEBUG
