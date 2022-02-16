@@ -15,4 +15,4 @@ To contribute to this project there are some basic rules:
 
 ![img.png](docs/img/img.png)
 - Create a branch with a meaningful name. For example, if the task number is 30 and the task is to add a Product entity, then it should be something like `feature/30-add-product-entity`
-- Once you do it, create a Pull Request!
+- Once you do it, create a Pull Request!hola
