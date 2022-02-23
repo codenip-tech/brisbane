@@ -41,8 +41,9 @@ composer-install: ## Installs composer dependencies
 prepare: ## Runs backend commands
 	$(MAKE) composer-install
 
-tests: ## Run tests
-	./make.sh tests ${DOCKER_BE}
-
 generate-private-key:
 	./make.sh generate-private-key
+
+.PHONY: run tests
+tests: ## Run tests
+	./make.sh tests ${DOCKER_BE}
