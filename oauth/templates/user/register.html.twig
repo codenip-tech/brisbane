@@ -1,8 +1,70 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Register</h1>
-    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration bg-light bg-gradient" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        {{ form_row(form.firstName, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        {{ form_row(form.lastName, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 mb-4 d-flex align-items-center">
+
+                                    <div class="form-outline datepicker w-100">
+                                        {{ form_row(form.email, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        {{ form_row(form.password, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="confirmPassword">Confirm Password</label>
+                                        <input type="tel" id="confirmPassword" class="form-control form-control-lg" />
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="mt-4 pt-2">
+                                {{ form_row(form.save, { 'label': 'Register' }, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
+                            </div>
+                        {{ form_rest(form) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
