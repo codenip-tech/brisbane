@@ -12,8 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class RegisterController extends AbstractController
+class SecurityController extends AbstractController
 {
     #[Route('/register', name: 'oauth_register', methods: ['GET', 'POST'])]
     public function register(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $hasher): Response
@@ -30,11 +31,27 @@ class RegisterController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->redirectToRoute('oauth_register');
+            return $this->redirectToRoute('oauth_login');
         }
 
         return $this->renderForm('user/register.html.twig', [
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/login', name: 'oauth_login')]
+    public function index(AuthenticationUtils $authenticationUtils): Response
+    {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('target_path');
+        }
+
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('user/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
         ]);
     }
 }
