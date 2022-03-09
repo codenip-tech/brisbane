@@ -12,6 +12,9 @@ case ${COMMAND} in
     docker network create brisbane-network 2> /dev/null || true
     U_ID=${UID} docker-compose up -d
     ;;
+  down-clean)
+    U_ID=${UID} docker-compose down -v
+    ;;
   stop)
     U_ID=${UID} docker-compose stop
     ;;
