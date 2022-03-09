@@ -5,17 +5,28 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\User;
+use App\EventListener\SignedAuthorizationRequestSubscriber;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\UriSigner;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+    private UriSigner $uriSigner;
+    private string $authorizationRoute;
+
+    public function __construct(UriSigner $uriSigner, string $authorizationRoute = 'oauth2_authorize')
+    {
+        $this->uriSigner = $uriSigner;
+        $this->authorizationRoute = $authorizationRoute;
+    }
+
     #[Route('/register', name: 'oauth_register', methods: ['GET', 'POST'])]
     public function register(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $hasher): Response
     {
@@ -40,7 +51,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/login', name: 'oauth_login')]
-    public function index(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
             return $this->redirectToRoute('target_path');
@@ -53,5 +64,30 @@ class SecurityController extends AbstractController
             'last_username' => $lastUsername,
             'error' => $error,
         ]);
+    }
+
+    /**
+     * @Route("/authorize/decide", name="oauth2_decision")
+     */
+    public function decisionAction(Request $request): Response
+    {
+        return $this->render('user/decide.html.twig', [
+            'allow_uri' => $this->buildDecidedUri($request, true),
+            'deny_uri' => $this->buildDecidedUri($request, false),
+        ]);
+    }
+
+    private function buildDecidedUri(Request $request, bool $allowed): string
+    {
+        $currentQuery = $request->query->all();
+        $decidedQuery = array_merge($currentQuery, [SignedAuthorizationRequestSubscriber::ATTRIBUTE_DECISION => $this->buildDecisionValue($allowed)]);
+        $decidedUri = $this->generateUrl($this->authorizationRoute, $decidedQuery);
+
+        return $this->uriSigner->sign($decidedUri);
+    }
+
+    private function buildDecisionValue(bool $allowed): string
+    {
+        return $allowed ? SignedAuthorizationRequestSubscriber::ATTRIBUTE_DECISION_ALLOW : '';
     }
 }
