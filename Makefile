@@ -15,6 +15,9 @@ start: ## Start the containers
 stop: ## Stop the containers
 	./make.sh stop ${DOCKER_BE}
 
+down-clean: ## Remove containers and volumes
+	./make.sh down-clean ${DOCKER_BE}
+
 restart: ## Restart the containers
 	$(MAKE) stop && $(MAKE) start
 
