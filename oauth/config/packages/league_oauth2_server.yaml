@@ -3,7 +3,7 @@ league_oauth2_server:
 
     # Full path to the private key file.
     # How to generate a private key: https://oauth2.thephpleague.com/installation/#generating-public-and-private-keys
-    private_key:          /var/oauth/private.key
+    private_key:          /appdata/www/var/oauth/private.key
 
     # Passphrase of the private key, if any
     private_key_passphrase: null
@@ -25,7 +25,7 @@ league_oauth2_server:
 
     # How long the issued auth code should be valid for.
     # The value should be a valid interval: http://php.net/manual/en/dateinterval.construct.php#refsect1-dateinterval.construct-parameters
-    auth_code_ttl:        PT3M
+    auth_code_ttl:        PT60M
 
     # Whether to enable the client credentials grant
     enable_client_credentials_grant: true
