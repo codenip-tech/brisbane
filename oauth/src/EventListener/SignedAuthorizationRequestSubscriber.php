@@ -1,7 +1,5 @@
 <?php
 
-//src/EventListener/SignedAuthorizationRequestSubscriber.php
-
 namespace App\EventListener;
 
 use League\Bundle\OAuth2ServerBundle\Event\AuthorizationRequestResolveEvent;
