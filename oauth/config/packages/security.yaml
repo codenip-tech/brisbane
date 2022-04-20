@@ -14,11 +14,20 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            pattern: ^/(login|register)
             lazy: true
             form_login:
                 login_path: oauth_login
                 check_path: oauth_login
                 enable_csrf: true
+        api_token:
+            pattern: ^/token$
+            security: false
+        api:
+            pattern: ^/api
+            security: true
+            stateless: true
+            oauth2: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

@@ -11,6 +11,7 @@ services:
             $oauthResponseType: '%env(resolve:OAUTH_RESPONSE_TYPE)%'
             $oauthRedirectUri:  '%env(resolve:OAUTH_REDIRECT_URI)%'
             $oauthRegisterUrl:  '%env(resolve:OAUTH_REGISTER_URL)%'
+            $oauthTokenUrl:     '%env(resolve:OAUTH_TOKEN_URL)%'
 
     App\:
         resource: '../src/'
