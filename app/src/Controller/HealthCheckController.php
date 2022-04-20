@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HealthCheckController
 {
-    #[Route('/', name: 'health_check', methods: ['GET'])]
+    #[Route('/health-check', name: 'health_check', methods: ['GET'])]
     public function __invoke(): Response
     {
         return new JsonResponse(['status' => 'ok']);
