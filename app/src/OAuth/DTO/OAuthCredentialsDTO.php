@@ -13,7 +13,6 @@ class OAuthCredentialsDTO
         public readonly string $oauthResponseType,
         public readonly string $oauthRedirectUri,
         public readonly string $oauthRegisterUrl
-    )
-    {
+    ) {
     }
 }
