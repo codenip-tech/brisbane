@@ -25,8 +25,8 @@ class CodeExchanger
                 'redirect_uri' => $this->oAuthCredentialsDTO->oauthRedirectUri,
                 'code' => $code,
                 'client_id' => $this->oAuthCredentialsDTO->oauthClientId,
-                'client_secret' => $this->oAuthCredentialsDTO->oauthSecret
-            ]
+                'client_secret' => $this->oAuthCredentialsDTO->oauthSecret,
+            ],
         ]);
 
         $parsedResponse = json_decode($response->getBody()->getContents(), true);

@@ -38,7 +38,7 @@ class HomeController extends AbstractController
         $codeExchangeResponse = $this->codeExchanger->exchange($code);
 
         return $this->render('dashboard/dashboard/index.html.twig', [
-            'accessToken' => $codeExchangeResponse->accessToken
+            'accessToken' => $codeExchangeResponse->accessToken,
         ]);
     }
 }
