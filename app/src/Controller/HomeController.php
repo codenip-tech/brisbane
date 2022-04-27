@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\OAuth\DTO\OAuthCredentialsDTO;
+use App\OAuth\Service\CodeExchanger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,8 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    public function __construct(private readonly OAuthCredentialsDTO $dto)
-    {
+    public function __construct(
+        private readonly OAuthCredentialsDTO $dto,
+        private readonly CodeExchanger $codeExchanger,
+    ) {
     }
 
     #[Route('/', name: 'app_index', methods: ['GET'])]
@@ -31,6 +34,11 @@ class HomeController extends AbstractController
     #[Route('/oauth-validate-code', name: 'oauth_validate_code', methods: ['GET'])]
     public function oauthVerifyCode(Request $request): Response
     {
-        return $this->render('dashboard/dashboard/index.html.twig');
+        $code = $request->query->get('code');
+        $codeExchangeResponse = $this->codeExchanger->exchange($code);
+
+        return $this->render('dashboard/dashboard/index.html.twig', [
+            'accessToken' => $codeExchangeResponse->accessToken,
+        ]);
     }
 }

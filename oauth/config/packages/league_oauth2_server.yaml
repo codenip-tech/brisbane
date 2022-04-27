@@ -49,7 +49,7 @@ league_oauth2_server:
 
     # Full path to the public key file
     # How to generate a public key: https://oauth2.thephpleague.com/installation/#generating-public-and-private-keys
-    public_key:           /var/oauth/public.key
+    public_key:           /appdata/www/var/oauth/public.key
 
   scopes:
     # Scopes that you wish to utilize in your application.

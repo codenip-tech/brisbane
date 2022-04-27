@@ -7,6 +7,9 @@ Collaborative project for Codenip's weekly streaming. Every Wednesday from 20:00
 - OAuth server (Symfony 5.4 + MariaDB + Nginx)
 - Main Application (Symfony 5.4 + MariaDB + Nginx)
 
+## Coding conventions
+- Acronyms are all written in capital case. Example: OAuthDTO
+
 ## Contributing
 To contribute to this project there are some basic rules:
 - Check issues in https://github.com/codenip-tech/brisbane/issues
