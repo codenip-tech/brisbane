@@ -2,19 +2,17 @@
 
 namespace App\OAuth\Service;
 
+use App\Http\HttpClientInterface;
 use App\OAuth\DTO\CodeExchangeResponse;
 use App\OAuth\DTO\OAuthCredentialsDTO;
-use GuzzleHttp\Client;
 
 class CodeExchanger
 {
-    private readonly Client $httpClient;
-
     public function __construct(
         private readonly string $oauthTokenUrl,
         private readonly OAuthCredentialsDTO $oAuthCredentialsDTO,
+        private readonly HttpClientInterface $httpClient
     ) {
-        $this->httpClient = new Client();
     }
 
     public function exchange(string $code): CodeExchangeResponse

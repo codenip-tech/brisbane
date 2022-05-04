@@ -5,13 +5,14 @@ services:
         autowire: true
         autoconfigure: true
         bind:
-            $oauthSecret:       '%env(resolve:OAUTH_SECRET)%'
-            $oauthDecideUrl:    '%env(resolve:OAUTH_DECIDE_URL)%'
-            $oauthClientId:     '%env(resolve:OAUTH_CLIENT_ID)%'
-            $oauthResponseType: '%env(resolve:OAUTH_RESPONSE_TYPE)%'
-            $oauthRedirectUri:  '%env(resolve:OAUTH_REDIRECT_URI)%'
-            $oauthRegisterUrl:  '%env(resolve:OAUTH_REGISTER_URL)%'
-            $oauthTokenUrl:     '%env(resolve:OAUTH_TOKEN_URL)%'
+            $oauthSecret:        '%env(resolve:OAUTH_SECRET)%'
+            $oauthDecideUrl:     '%env(resolve:OAUTH_DECIDE_URL)%'
+            $oauthClientId:      '%env(resolve:OAUTH_CLIENT_ID)%'
+            $oauthResponseType:  '%env(resolve:OAUTH_RESPONSE_TYPE)%'
+            $oauthRedirectUri:   '%env(resolve:OAUTH_REDIRECT_URI)%'
+            $oauthRegisterUrl:   '%env(resolve:OAUTH_REGISTER_URL)%'
+            $oauthTokenUrl:      '%env(resolve:OAUTH_TOKEN_URL)%'
+            $oauthGetProfileUrl: '%env(resolve:OAUTH_GET_PROFILE_URL)%'
 
     App\:
         resource: '../src/'

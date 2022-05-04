@@ -2,15 +2,29 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
 class Organization
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'NONE')]
+    #[ORM\Column(type: 'string', columnDefinition: 'CHAR(36) NOT NULL')]
+    private readonly string $id;
+
+    #[ORM\Column(length: 100)]
+    private string $name;
+
     /** @var User[] */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'organizations')]
     private array $users = [];
 
     private function __construct(
-        private readonly string $id,
-        private string $name,
+        string $id,
+        string $name,
     ) {
+        $this->id = $id;
+        $this->name = $name;
     }
 
     public static function create(string $id, string $name): static

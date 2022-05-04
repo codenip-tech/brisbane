@@ -3,6 +3,7 @@
 namespace App\Doctrine;
 
 use App\Entity\User;
+use App\Exception\EntityNotFoundException;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
@@ -19,9 +20,13 @@ class DoctrineUserRepository implements UserRepository
         $this->entityManager = $managerRegistry->getManager();
     }
 
-    public function find(string $id): ?User
+    public function findOneByIdOrFail(string $id): User
     {
-        return $this->repo->find($id);
+        if (null === $user = $this->repo->find($id)) {
+            throw EntityNotFoundException::fromClassAndId(User::class, $id);
+        }
+
+        return $user;
     }
 
     public function save(User $user): void
