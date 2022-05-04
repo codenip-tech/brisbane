@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HealthCheckControllerTest extends WebTestCase
 {
-    private const ENDPOINT = '/';
+    private const ENDPOINT = '/health-check';
 
     public function testHealthCheck(): void
     {
