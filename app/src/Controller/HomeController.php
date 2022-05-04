@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\OAuth\DTO\OAuthCredentialsDTO;
 use App\OAuth\Service\CodeExchanger;
+use App\OAuth\Service\GetProfile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ class HomeController extends AbstractController
     public function __construct(
         private readonly OAuthCredentialsDTO $dto,
         private readonly CodeExchanger $codeExchanger,
+        private readonly GetProfile $getProfile
     ) {
     }
 
@@ -37,8 +39,11 @@ class HomeController extends AbstractController
         $code = $request->query->get('code');
         $codeExchangeResponse = $this->codeExchanger->exchange($code);
 
+        $user = $this->getProfile->__invoke($codeExchangeResponse->accessToken);
+
         return $this->render('dashboard/dashboard/index.html.twig', [
-            'accessToken' => $codeExchangeResponse->accessToken,
+            'id' => $user->id(),
+            'email' => $user->email(),
         ]);
     }
 }
