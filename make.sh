@@ -43,6 +43,7 @@ case ${COMMAND} in
     ;;
   generate-private-key)
     openssl genrsa -out private.key 2048
+    chmod 644 private.key
     ;;
   *)
     echo "Command ${COMMAND} not implemented"
