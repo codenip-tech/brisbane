@@ -1,6 +1,9 @@
-{% extends 'dashboard/layout.html.twig' %}
+{% extends 'base/admin_base.html.twig' %}
 
-{% block body %}
-    <h2>Welcome to the dashboard!</h2>
-    {{ accessToken }}
+{% block sidebar %}
+    {{ include('component/sidebar.html.twig') }}
+{% endblock %}
+
+{% block content %}
+    <h2>Welcome to the dashboard! Here we are {{ d }}</h2>
 {% endblock %}
