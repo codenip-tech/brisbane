@@ -47,6 +47,9 @@ prepare: ## Runs backend commands
 generate-private-key:
 	./make.sh generate-private-key
 
+generate-public-key:
+	./make.sh generate-public-key
+
 .PHONY: run tests
 tests: ## Run tests
 	./make.sh tests ${DOCKER_BE}
