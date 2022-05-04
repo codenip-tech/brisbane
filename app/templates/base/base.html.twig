@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+            <meta charset="UTF-8">
+            <title>{% block title %}Brisbane{% endblock %}</title>
+            {% block stylesheets %}
+                {{ encore_entry_link_tags('app') }}
+            {% endblock %}
+
+            {% block javascripts %}
+                {{ encore_entry_script_tags('app') }}
+            {% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+    <div>Contact us {{ app.user }}</div>
+        {% block body %}
+            This is the body
+        {% endblock %}
+    </body>
+</html>

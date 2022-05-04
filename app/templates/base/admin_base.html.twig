@@ -1,0 +1,15 @@
+{% extends 'base/base.html.twig' %}
+
+{% block javascripts %}
+
+{% endblock %}
+
+{% block body %}
+    {% block header %}The header{% endblock %}
+
+    {% block sidebar %}
+        {{ include('component/sidebar.html.twig') }}
+    {% endblock %}
+
+    {% block content %}The content{% endblock %}
+{% endblock %}
