@@ -44,11 +44,8 @@ composer-install: ## Installs composer dependencies
 prepare: ## Runs backend commands
 	$(MAKE) composer-install
 
-generate-private-key:
-	./make.sh generate-private-key
-
-generate-public-key:
-	./make.sh generate-public-key
+generate-oauth-keys: ## Generate oauth private and public keys
+	./make.sh generate-oauth-keys
 
 .PHONY: run tests
 tests: ## Run tests
