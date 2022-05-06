@@ -3,7 +3,7 @@ set -e
 export U_ID=$(id -u)
 COMMAND=$1
 DOCKER_BE=$2
-OAUTH_KEYS_DIR="$(dirname "$(readlink -f "$0")")"/var/oauth
+OAUTH_KEYS_DIR="$(dirname "$(readlink -f "$0")")"/oauth/var/oauth
 
 case ${COMMAND} in
   ssh-be)
