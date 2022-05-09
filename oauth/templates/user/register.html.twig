@@ -42,15 +42,14 @@
                                 <div class="col-md-6 mb-4 pb-2">
 
                                     <div class="form-outline">
-                                        {{ form_row(form.password, {'attr': {'class': 'form-control form-control-lg'}}) }}
+                                        {{ form_row(form.password.first, {'attr': {'class': 'form-control form-control-lg'}}) }}
                                     </div>
 
                                 </div>
                                 <div class="col-md-6 mb-4 pb-2">
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="confirmPassword">Confirm Password</label>
-                                        <input type="tel" id="confirmPassword" class="form-control form-control-lg" />
+                                        {{ form_row(form.password.second, {'attr': {'class': 'form-control form-control-lg'}}) }}
                                     </div>
 
                                 </div>
