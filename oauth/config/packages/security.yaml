@@ -14,7 +14,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            pattern: ^/(login|register)
+            pattern: ^/(login|register|authorize)
             lazy: true
             form_login:
                 login_path: oauth_login
