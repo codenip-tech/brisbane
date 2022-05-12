@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Application\Controller;
 
-use App\OAuth\DTO\OAuthCredentialsDTO;
-use App\OAuth\Service\CodeExchanger;
-use App\OAuth\Service\GetProfile;
+use App\Domain\OAuth\DTO\OAuthCredentialsDTO;
+use App\Domain\OAuth\Service\CodeExchanger;
+use App\Domain\OAuth\Service\GetProfile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

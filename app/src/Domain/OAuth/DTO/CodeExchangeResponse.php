@@ -1,6 +1,6 @@
 <?php
 
-namespace App\OAuth\DTO;
+namespace App\Domain\OAuth\DTO;
 
 class CodeExchangeResponse
 {

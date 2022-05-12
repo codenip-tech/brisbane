@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Entity;
+namespace App\Domain\Entity;
 
 class BillingProfile
 {
     private function __construct(
-        private readonly string $id,
+        private readonly string $ids,
         private readonly Organization $organization,
     ) {
     }
@@ -17,7 +17,7 @@ class BillingProfile
 
     public function id(): string
     {
-        return $this->id;
+        return $this->ids;
     }
 
     public function organization(): Organization

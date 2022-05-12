@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <entity name="App\Domain\Entity\User" table="user">
+        <id name="id" type="string" length="36" column-definition="CHAR(36) NOT NULL" />
+        <field name="email" type="string" />
+        <many-to-many
+                field="organizations"
+                target-entity="App\Domain\Entity\Organization"
+                inversed-by="users">
+            <cascade><cascade-persist /></cascade>
+        </many-to-many>
+    </entity>
+</doctrine-mapping>
