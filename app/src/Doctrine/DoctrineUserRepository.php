@@ -4,7 +4,7 @@ namespace App\Doctrine;
 
 use App\Domain\Entity\User;
 use App\Exception\EntityNotFoundException;
-use App\Repository\UserRepository;
+use App\Domain\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

@@ -6,7 +6,7 @@ namespace App\Domain\OAuth\Service;
 
 use App\Domain\Entity\User;
 use App\Http\HttpClientInterface;
-use App\Repository\UserRepository;
+use App\Domain\Repository\UserRepository;
 
 class GetProfile
 {
