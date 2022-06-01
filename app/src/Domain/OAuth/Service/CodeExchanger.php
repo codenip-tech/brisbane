@@ -4,7 +4,7 @@ namespace App\Domain\OAuth\Service;
 
 use App\Domain\OAuth\DTO\CodeExchangeResponse;
 use App\Domain\OAuth\DTO\OAuthCredentialsDTO;
-use App\Http\HttpClientInterface;
+use App\Infrastructure\Http\HttpClientInterface;
 
 class CodeExchanger
 {
