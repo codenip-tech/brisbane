@@ -7,6 +7,7 @@ namespace App\Application\Controller;
 use App\Domain\OAuth\DTO\OAuthCredentialsDTO;
 use App\Domain\OAuth\Service\CodeExchanger;
 use App\Domain\OAuth\Service\GetProfile;
+use App\Domain\OAuth\Service\SaveUser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,8 @@ class HomeController extends AbstractController
     public function __construct(
         private readonly OAuthCredentialsDTO $dto,
         private readonly CodeExchanger $codeExchanger,
-        private readonly GetProfile $getProfile
+        private readonly GetProfile $getProfile,
+        private readonly SaveUser $saveUser
     ) {
     }
 
@@ -39,7 +41,9 @@ class HomeController extends AbstractController
         $code = $request->query->get('code');
         $codeExchangeResponse = $this->codeExchanger->exchange($code);
 
-        $user = $this->getProfile->__invoke($codeExchangeResponse->accessToken);
+        $userDTO = $this->getProfile->__invoke($codeExchangeResponse->accessToken);
+
+        $user = $this->saveUser->__invoke($userDTO->id, $userDTO->email);
 
         return $this->render('dashboard/dashboard/index.html.twig', [
             'id' => $user->id(),

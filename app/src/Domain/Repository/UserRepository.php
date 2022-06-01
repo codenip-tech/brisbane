@@ -6,7 +6,9 @@ use App\Domain\Entity\User;
 
 interface UserRepository
 {
-    public function findOneByIdOrFail(string $id): ?User;
+    public function findOneByIdOrFail(string $id): User;
+
+    public function findOneById(string $id): ?User;
 
     public function save(User $user): void;
 }
