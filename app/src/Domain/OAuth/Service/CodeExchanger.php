@@ -2,9 +2,9 @@
 
 namespace App\Domain\OAuth\Service;
 
-use App\Http\HttpClientInterface;
 use App\Domain\OAuth\DTO\CodeExchangeResponse;
 use App\Domain\OAuth\DTO\OAuthCredentialsDTO;
+use App\Http\HttpClientInterface;
 
 class CodeExchanger
 {

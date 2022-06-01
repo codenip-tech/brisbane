@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Domain\OAuth\Service;
 
 use App\Domain\Entity\User;
-use App\Http\HttpClientInterface;
 use App\Domain\Repository\UserRepository;
+use App\Http\HttpClientInterface;
 
 class GetProfile
 {

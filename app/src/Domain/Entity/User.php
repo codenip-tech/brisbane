@@ -22,7 +22,7 @@ class User
         $this->id = $id;
         $this->email = $email;
         $this->organizations = new ArrayCollection([
-            Organization::create(Uuid::v4()->toRfc4122(), \sprintf('%s\'s organization', $email))
+            Organization::create(Uuid::v4()->toRfc4122(), \sprintf('%s\'s organization', $email)),
         ]);
     }
 
