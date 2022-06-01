@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\OAuth\DTO;
+namespace App\Domain\OAuth\DTO;
 
 class OAuthCredentialsDTO
 {

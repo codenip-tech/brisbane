@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Doctrine;
+namespace App\Infrastructure\Persistence\Repository;
 
-use App\Entity\User;
-use App\Exception\EntityNotFoundException;
-use App\Repository\UserRepository;
+use App\Application\Exception\EntityNotFoundException;
+use App\Domain\Entity\User;
+use App\Domain\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

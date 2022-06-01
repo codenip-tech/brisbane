@@ -21,6 +21,6 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
-    App\Controller\:
-        resource: '../src/Controller/'
+    App\Application\Controller\:
+        resource: '../src/Application/Controller/'
         tags: [ 'controller.service_arguments' ]

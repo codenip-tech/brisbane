@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Http;
+namespace App\Infrastructure\Http;
 
-use App\Exception\HttpClientException;
+use App\Infrastructure\Exception\HttpClientException;
 use Psr\Http\Message\ResponseInterface;
 
 interface HttpClientInterface

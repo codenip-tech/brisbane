@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\OAuth\Service;
+namespace App\Domain\OAuth\Service;
 
-use App\Entity\User;
-use App\Http\HttpClientInterface;
-use App\Repository\UserRepository;
+use App\Domain\Entity\User;
+use App\Domain\Repository\UserRepository;
+use App\Infrastructure\Http\HttpClientInterface;
 
 class GetProfile
 {

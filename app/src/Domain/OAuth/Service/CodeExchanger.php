@@ -1,10 +1,10 @@
 <?php
 
-namespace App\OAuth\Service;
+namespace App\Domain\OAuth\Service;
 
-use App\Http\HttpClientInterface;
-use App\OAuth\DTO\CodeExchangeResponse;
-use App\OAuth\DTO\OAuthCredentialsDTO;
+use App\Domain\OAuth\DTO\CodeExchangeResponse;
+use App\Domain\OAuth\DTO\OAuthCredentialsDTO;
+use App\Infrastructure\Http\HttpClientInterface;
 
 class CodeExchanger
 {
