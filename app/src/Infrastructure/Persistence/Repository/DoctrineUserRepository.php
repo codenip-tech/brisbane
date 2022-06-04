@@ -29,6 +29,11 @@ class DoctrineUserRepository implements UserRepository
         return $user;
     }
 
+    public function findOneById(string $id): ?User
+    {
+        return $this->repo->find($id);
+    }
+
     public function save(User $user): void
     {
         $this->entityManager->persist($user);

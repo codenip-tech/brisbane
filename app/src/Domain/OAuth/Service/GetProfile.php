@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace App\Domain\OAuth\Service;
 
-use App\Domain\Entity\User;
-use App\Domain\Repository\UserRepository;
+use App\Domain\OAuth\DTO\UserDTO;
 use App\Infrastructure\Http\HttpClientInterface;
 
 class GetProfile
 {
     public function __construct(
         private readonly HttpClientInterface $httpClient,
-        private readonly UserRepository $userRepository,
         private readonly string $oauthGetProfileUrl
     ) {
     }
 
-    public function __invoke(string $token): User
+    public function __invoke(string $token): UserDTO
     {
         $response = $this->httpClient->get($this->oauthGetProfileUrl, [
             'headers' => [
@@ -27,10 +25,6 @@ class GetProfile
 
         $data = \json_decode($response->getBody()->getContents(), true);
 
-        $user = new User($data['id'], $data['email']);
-
-        $this->userRepository->save($user);
-
-        return $user;
+        return UserDTO::create($data['id'], $data['email']);
     }
 }
