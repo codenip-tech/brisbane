@@ -14,7 +14,7 @@
         {% endblock %}
     </head>
     <body>
-    <div>Contact us {{ app.user }}</div>
+    <div>Contact us {{ app.user ? app.user.email : 'hello@codenip.tech' }}</div>
         {% block body %}
             This is the body
         {% endblock %}

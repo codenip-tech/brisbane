@@ -38,16 +38,6 @@ class HomeController extends AbstractController
     #[Route('/oauth-validate-code', name: 'oauth_validate_code', methods: ['GET'])]
     public function oauthVerifyCode(Request $request): Response
     {
-        $code = $request->query->get('code');
-        $codeExchangeResponse = $this->codeExchanger->exchange($code);
-
-        $userDTO = $this->getProfile->__invoke($codeExchangeResponse->accessToken);
-
-        $user = $this->saveUser->__invoke($userDTO->id, $userDTO->email);
-
-        return $this->render('dashboard/dashboard/index.html.twig', [
-            'id' => $user->id(),
-            'email' => $user->email(),
-        ]);
+        return new Response('Should not be here');
     }
 }
