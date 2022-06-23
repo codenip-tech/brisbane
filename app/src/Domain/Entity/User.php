@@ -62,17 +62,14 @@ class User implements UserInterface
 
     public function getPassword()
     {
-
     }
 
     public function getSalt()
     {
-
     }
 
     public function eraseCredentials()
     {
-
     }
 
     public function getUsername()
@@ -82,9 +79,10 @@ class User implements UserInterface
 
     public function __call(string $name, array $arguments)
     {
-        if ($name !== 'getUserIdentifier') {
+        if ('getUserIdentifier' !== $name) {
             throw new \LogicException(sprintf('Received method %s but expected getUserIdentifier', $name));
         }
+
         return $this->email();
     }
 }
