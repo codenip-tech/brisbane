@@ -20,9 +20,9 @@ RUN apt update \
     # for RabbitMQ and XDEBUG
     && docker-php-ext-install bcmath sockets \
     && apt install -y librabbitmq-dev vim libssh-dev \
-    && pecl install xdebug amqp \
+    && pecl install xdebug amqp redis \
     # enable Docker extensions
-    && docker-php-ext-enable --ini-name 05-opcache.ini opcache xdebug amqp
+    && docker-php-ext-enable --ini-name 05-opcache.ini opcache xdebug amqp redis
 
 # Install and update composer
 RUN curl https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer

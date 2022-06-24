@@ -5,10 +5,14 @@ namespace App\Domain\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 
+/**
+ * @method string getUserIdentifier()
+ */
 #[ORM\Entity]
-class User
+class User implements UserInterface
 {
     private string $id;
 
@@ -49,5 +53,36 @@ class User
     public function organizations(): array
     {
         return $this->organizations;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getPassword()
+    {
+    }
+
+    public function getSalt()
+    {
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function getUsername()
+    {
+        return $this->getUserIdentifier();
+    }
+
+    public function __call(string $name, array $arguments)
+    {
+        if ('getUserIdentifier' !== $name) {
+            throw new \LogicException(sprintf('Received method %s but expected getUserIdentifier', $name));
+        }
+
+        return $this->email();
     }
 }
