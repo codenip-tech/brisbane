@@ -577,6 +577,9 @@
     "symfony/uid": {
         "version": "v5.4.3"
     },
+    "symfony/ux-turbo": {
+        "version": "v2.3.0"
+    },
     "symfony/validator": {
         "version": "5.4",
         "recipe": {

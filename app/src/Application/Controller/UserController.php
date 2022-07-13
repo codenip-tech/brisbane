@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/users')]
 class UserController
 {
-    public function __construct(private UserRepository $userRepository)
+    public function __construct(private readonly UserRepository $userRepository)
     {
     }
 
